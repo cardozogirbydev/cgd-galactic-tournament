@@ -2,22 +2,26 @@ package com.galactic_tournament.backend.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 
 @Entity
+@Table(name = "species")
 public class Species {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotBlank(message = "El nombre es obligatorio")
+  @Column(nullable = false)
   private String name;
 
-  @Min(value = 1, message = "El nivel de poder debe ser al menos 1")
+  @Min(value = 1)
+  @Column(nullable = false)
   private Integer powerLevel;
 
+  @Column(nullable = false)
   private String specialAbility;
 
+  @Column(nullable = false)
   private Integer victories = 0;
 
   public Species() {}
