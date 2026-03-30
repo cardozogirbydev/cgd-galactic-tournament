@@ -79,7 +79,7 @@ export class ArenaBoard {
   protected randomCombat(): void {
     const species = this.speciesResource.value() ?? [];
 
-    if (species.length < 5) return;
+    if (species.length < 2) return;
 
     this.reset();
 
