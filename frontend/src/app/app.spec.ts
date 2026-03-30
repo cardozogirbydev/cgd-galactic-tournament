@@ -43,4 +43,11 @@ describe('App', () => {
 
     expect(routerOutlet).toBeTruthy();
   });
+
+  it('should render navbar', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const navbar = compiled.querySelector('app-navbar');
+
+    expect(navbar).toBeTruthy();
+  });
 });
