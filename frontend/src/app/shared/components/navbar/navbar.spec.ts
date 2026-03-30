@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { MenuItem, Navbar } from '@shared/components/navbar/navbar';
@@ -10,7 +10,9 @@ describe('Navbar', () => {
   let fixture:ComponentFixture<Navbar>;
 
   @Component({ selector: 'app-navbar-item', template: '' })
-  class MockNavbarItem {}
+  class MockNavbarItem {
+    menuItem = input.required<MenuItem>();
+  }
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
@@ -35,28 +37,13 @@ describe('Navbar', () => {
     expect(component).toBeDefined();
   });
 
-  // it('should expose the expected menu items', () => {
-  //   const menu:MenuItem[] = [
-  //     { label: 'Ranking', route: '/ranking' },
-  //     { label: 'Arena', route: '/arena' },
-  //     { label: 'Especies', route: '/species' }
-  //   ];
+  it('should expose the expected menu items', () => {
+    const menu:MenuItem[] = [
+      { label: 'Ranking', route: '/ranking' },
+      { label: 'Arena', route: '/arena' },
+      { label: 'Especies', route: '/species' }
+    ];
 
-  //   expect(menu).toEqual(menu);
-  // });
-
-  // it('should render navbar items in mobile and desktop menus', () => {
-  //   const compiled = fixture.nativeElement as HTMLElement;
-  //   const navbarItems = compiled.querySelectorAll('app-navbar-item');
-
-  //   expect(navbarItems.length).toBe(6);
-  // });
-
-  // it('should render the brand title', () => {
-  //   const compiled = fixture.nativeElement as HTMLElement;
-  //   const brandLink = compiled.querySelector('.navbar-start a[routerlink]');
-
-  //   expect(brandLink).toBeTruthy();
-  //   expect(brandLink?.textContent?.replace(/\s+/g, ' ').trim()).toBe('Galactic Tournament');
-  // });
+    expect(menu).toEqual(component['menu']);
+  });
 });
