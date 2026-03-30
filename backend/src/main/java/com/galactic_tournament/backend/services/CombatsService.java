@@ -17,9 +17,9 @@ public class CombatsService {
   @Autowired
   private SpeciesMapper speciesMapper;
 
-  public SpeciesResponseDTO executeCombat(Long idOne, Long idTwo) {
-    Species specieOneEntity = speciesRepository.findById(idOne).orElseThrow(() -> new RuntimeException("No se encontró la especie: " + idOne));
-    Species specieTwoEntity = speciesRepository.findById(idTwo).orElseThrow(() -> new RuntimeException("No se encontró la especie: " + idTwo));
+  public SpeciesResponseDTO executeSpeciesCombat(Long speciesIdOne, Long speciesIdTwo) {
+    Species specieOneEntity = speciesRepository.findById(speciesIdOne).orElseThrow(() -> new RuntimeException("No se encontró la especie: " + speciesIdOne));
+    Species specieTwoEntity = speciesRepository.findById(speciesIdTwo).orElseThrow(() -> new RuntimeException("No se encontró la especie: " + speciesIdTwo));
     Species winnerEntity = null;
 
     if (specieOneEntity.getPowerLevel() > specieTwoEntity.getPowerLevel()) {
