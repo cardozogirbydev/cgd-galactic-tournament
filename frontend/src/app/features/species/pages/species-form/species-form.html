@@ -1,0 +1,80 @@
+<div class="flex justify-center p-6">
+  <div class="card bg-base-100 w-full max-w-lg shadow-2xl border border-base-300">
+    <div class="card-body">
+      <h2 class="card-title text-2xl text-primary mb-4">Nueva Especie Galáctica</h2>
+      
+      <form [formGroup]="form" (ngSubmit)="save()" class="space-y-4">
+        <div>
+          <label class="floating-label">
+            <span>Nombre</span>
+            <input
+              type="text"
+              placeholder="Ej: Saiyan, Namekian..."
+              formControlName="name"
+              class="input input-bordered"
+              [class.input-error]="form.get('name')?.invalid && form.get('name')?.touched"
+            />
+          </label>
+          
+          @if (form.get('name')?.invalid && form.get('name')?.touched) {
+            <span class="text-error text-xs mt-1">
+              El nombre es obligatorio
+            </span>
+          }
+        </div>
+
+        <div>
+          <label class="floating-label">
+            <span>Nivel de Poder</span>
+            <input
+              type="number"
+              [class.input-error]="form.get('powerLevel')?.invalid && form.get('powerLevel')?.touched"
+              formControlName="powerLevel"
+              class="input input-bordered" 
+            />
+          </label>
+
+          @if (form.get('powerLevel')?.invalid && form.get('powerLevel')?.touched) {
+            <span class="text-error text-xs mt-1">
+              El nivel de poder debe ser superior a cero
+            </span>
+          }
+        </div>
+
+        <div>
+          <label class="floating-label">
+            <span>Habilidad Especial (Opcional)</span>
+            <textarea
+              placeholder="Describe su habilidad especial..."
+              formControlName="specialAbility"
+              class="textarea textarea-bordered h-24" 
+            >
+            </textarea>
+          </label>
+        </div>
+
+        <div class="card-actions justify-end mt-6">
+          <button
+            type="button"
+            [routerLink]="'/species'"
+            class="btn btn-ghost"
+          >
+            <span>Cancelar</span>
+          </button>
+
+          <button
+            type="submit"
+            class="btn btn-primary px-8" 
+            [disabled]="isSaving()"
+          >
+            @if (isSaving()) {
+              <span class="loading loading-spinner"></span>
+            }
+
+            <span>Guardar</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
