@@ -11,7 +11,7 @@
               type="text"
               placeholder="Ej: Saiyan, Namekian..."
               formControlName="name"
-              class="input input-bordered"
+              class="w-full input input-bordered"
               [class.input-error]="form.get('name')?.invalid && form.get('name')?.touched"
             />
           </label>
@@ -30,7 +30,7 @@
               type="number"
               [class.input-error]="form.get('powerLevel')?.invalid && form.get('powerLevel')?.touched"
               formControlName="powerLevel"
-              class="input input-bordered" 
+              class="w-full input input-bordered" 
             />
           </label>
 
@@ -47,7 +47,7 @@
             <textarea
               placeholder="Describe su habilidad especial..."
               formControlName="specialAbility"
-              class="textarea textarea-bordered h-24" 
+              class="w-full textarea textarea-bordered h-24" 
             >
             </textarea>
           </label>
