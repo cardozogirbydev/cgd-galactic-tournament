@@ -76,7 +76,30 @@ export class ArenaBoard {
     });
   }
 
-  reset():void {
+  protected randomCombat(): void {
+    const species = this.speciesResource.value() ?? [];
+
+    if (species.length < 5) return;
+
+    this.reset();
+
+    const speciesIndexOne = Math.floor(Math.random() * species.length);
+    const fighterOne = species[speciesIndexOne];
+
+    let speciesIndexTwo:number;
+    do {
+      speciesIndexTwo = Math.floor(Math.random() * species.length);
+    } while (speciesIndexOne === speciesIndexTwo);
+
+    const fighterTwo = species[speciesIndexTwo];
+
+    this.fighterOne.set(fighterOne);
+    this.fighterTwo.set(fighterTwo);
+
+    this.startCombat();
+  }
+
+  protected reset():void {
     this.fighterOne.set(null);
     this.fighterTwo.set(null);
     this.winner.set(null);

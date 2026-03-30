@@ -1,12 +1,12 @@
-<div class="p-6 max-w-7xl mx-auto space-y-10">
+<div class="flex flex-col p-6 max-w-7xl gap-10">
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center bg-base-300 p-8 rounded-3xl shadow-inner border-4 border-base-200">  
     <div class="flex flex-col items-center">
       <div class="avatar placeholder" [class.ring-primary]="fighterOne()">
         <div class="flex justify-center items-center bg-neutral text-neutral-content w-24 rounded-full ring ring-offset-base-100 ring-offset-2">
-          <span class="text-3xl">{{ fighterOne()?.name || '?' }}</span>
+          <span class="text-xl text-center">{{ fighterOne()?.name || '?' }}</span>
         </div>
       </div>
-      <h3 class="mt-4 font-bold text-xl">
+      <h3 class="text-center mt-4 font-bold text-xl">
         {{ fighterOne()?.name || 'Selecciona el primer luchador' }}
       </h3>
       @if (fighterOne()) {
@@ -39,18 +39,29 @@
           }
           ¡INICIAR DUELO!
         </button>
+
+        <button
+          (click)="randomCombat()"
+          [disabled]="isFighting() || (speciesResource.value()?.length ?? 0) < 2"
+          class="btn btn-outline btn-secondary btn-sm gap-2"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+          ¡COMBATE ALEATORIO!
+        </button>
       }
     </div>
 
     <div class="flex flex-col items-center">
       <div class="avatar placeholder" [class.ring-primary]="fighterTwo()">
         <div class="flex justify-center items-center bg-neutral text-neutral-content w-24 rounded-full ring ring-offset-base-100 ring-offset-2">
-          <span class="text-3xl">
+          <span class="text-xl text-center">
             {{ fighterTwo()?.name || '?' }}
           </span>
         </div>
       </div>
-      <h3 class="mt-4 font-bold text-xl">
+      <h3 class="text-center mt-4 font-bold text-xl">
         {{ fighterTwo()?.name || 'Selecciona al segundo luchador' }}
       </h3>
       @if (fighterTwo()) {
