@@ -11,6 +11,7 @@ public class SpeciesRequestDTO {
   @Min(value = 1, message = "El nivel de poder debe ser al menos 1")
   private Integer powerLevel;
 
+  @Size(max = 100, message = "La habilidad especial no puede exceder los 100 caracteres")
   private String specialAbility;
 
   public SpeciesRequestDTO() {}
