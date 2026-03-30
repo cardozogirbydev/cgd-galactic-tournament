@@ -1,0 +1,70 @@
+<div class="p-6 max-w-6xl mx-auto">
+  <div class="flex justify-between items-center mb-8">
+    <div>
+      <h1 class="text-3xl font-bold text-primary">
+        Especies Galácticas
+      </h1>
+
+      <p class="text-base-content/70">
+        Consulta la lista de especies registradas en el torneo galáctico.
+      </p>
+    </div>
+
+    <a routerLink="form" class="btn btn-primary shadow-lg">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+      </svg>
+
+      <span>Registrar</span>
+    </a>
+  </div>
+
+  @if (speciesResource.isLoading()) {
+    <div class="flex justify-center items-center py-20">
+      <span class="loading loading-dots loading-lg text-primary"></span>
+    </div>
+  } @else if (speciesResource.error()) {
+    <div class="alert alert-error shadow-lg">
+      <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+      <span>Error al cargar los datos.</span>
+      <button class="btn btn-sm btn-ghost" (click)="reload()">Reintentar</button>
+    </div>
+  } @else if (speciesResource.value()?.length === 0) {
+    <div class="card bg-base-200 shadow-inner p-10 text-center">
+      <h3 class="text-xl opacity-50">No hay especies registradas en el torneo.</h3>
+    </div>
+  } @else {
+    <div class="overflow-x-auto card bg-base-100 shadow-xl border border-base-300">
+      <table class="table table-zebra w-full">
+        <thead class="bg-base-200">
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Nivel de Poder</th>
+            <th>Habilidad Especial</th>
+            <th class="text-center">Victorias</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of speciesResource.value(); track item.id) {
+            <tr class="hover">
+              <td class="font-mono text-xs opacity-50">#{{ item.id }}</td>
+              <td>
+                <div class="font-bold">{{ item.name }}</div>
+              </td>
+              <td>
+                <div class="badge badge-outline badge-secondary">{{ item.powerLevel }}</div>
+              </td>
+              <td class="italic text-base-content/80">{{ item.specialAbility || 'Ninguna' }}</td>
+              <td class="text-center">
+                <div class="badge badge-success gap-2">
+                  {{ item.victories }}
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>
