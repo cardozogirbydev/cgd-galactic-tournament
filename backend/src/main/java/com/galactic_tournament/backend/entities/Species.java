@@ -2,6 +2,7 @@ package com.galactic_tournament.backend.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "species")
@@ -18,7 +19,7 @@ public class Species {
   @Column(nullable = false)
   private Integer powerLevel;
 
-  @Column(nullable = false)
+  @Size(max = 100)
   private String specialAbility;
 
   @Column(nullable = false)
@@ -40,4 +41,4 @@ public class Species {
 
   public Integer getVictories() { return victories; }
   public void setVictories(Integer victories) { this.victories = victories; }
-};
+}
