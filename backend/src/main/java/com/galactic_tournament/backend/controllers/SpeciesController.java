@@ -18,9 +18,14 @@ public class SpeciesController {
   @Autowired
   private SpeciesService speciesService;
 
-  @GetMapping()
+  @GetMapping
   public List<SpeciesResponseDTO> getAll() {
     return speciesService.getAll();
+  }
+
+  @GetMapping("/ranking")
+  public List<SpeciesResponseDTO> getRanking() {
+    return speciesService.getRanking();
   }
 
   @PostMapping
